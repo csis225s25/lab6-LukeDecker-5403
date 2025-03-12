@@ -20,10 +20,19 @@ class GraphicsPanel extends JPanel {
         // overriding in JPanel
         super.paintComponent(g);
 
-        // the Graphics object passed to this method has many methods
-        // we can use to draw in the area of the panel, one of which
-        // allows us to draw a String at a given x,y position
-        g.drawString("Hello, Java Graphics World!", 0, 20);
+        String message = "Hello, Java Graphics World!";        
+        
+        Font customFont = new Font("Arial", Font.BOLD | Font.ITALIC, 30); 
+        g.setFont(customFont);
+
+        FontMetrics fm = g.getFontMetrics();
+        int textWidth = fm.stringWidth(message); 
+        int textAscent = fm.getAscent(); 
+        int textHeight = fm.getHeight(); 
+
+        int x = (getWidth() - textWidth) / 2;  
+        int y = (getHeight() - textHeight) / 2 + textAscent; 
+        g.drawString(message, x, y);
     }
 }
 
